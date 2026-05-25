@@ -1,10 +1,10 @@
-module "rg" {
+module "resource-group" {
   source              = "./modules/resource-group"
   resource_group_name = var.resource_group_name
   location            = var.location
 }
 
-module "network" {
+module "virtual-network" {
   source = "./modules/virtual-network"
 
   resource_group_name = module.rg.resource_group_name
@@ -20,7 +20,7 @@ module "network" {
   vm_subnet_prefix = var.vm_subnet_prefix
 }
 
-module "nsg" {
+module "network-security-group" {
   source = "./modules/network-security-group"
 
   resource_group_name = module.rg.resource_group_name
@@ -31,7 +31,7 @@ module "nsg" {
   subnet_id = module.network.vm_subnet_id
 }
 
-module "frontend_vm" {
+module "app1-vm" {
   source = "./modules/virtual-machine"
 
   resource_group_name = module.rg.resource_group_name
@@ -46,7 +46,7 @@ module "frontend_vm" {
   subnet_id = module.network.vm_subnet_id
 }
 
-module "api_vm" {
+module "app2-vm" {
   source = "./modules/virtual-machine"
 
   resource_group_name = module.rg.resource_group_name
@@ -61,7 +61,7 @@ module "api_vm" {
   subnet_id = module.network.vm_subnet_id
 }
 
-module "nat_gateway" {
+module "nat-gateway" {
   source = "./modules/nat-gateway"
 
   resource_group_name = module.rg.resource_group_name
@@ -73,7 +73,7 @@ module "nat_gateway" {
   subnet_id = module.network.vm_subnet_id
 }
 
-module "waf" {
+module "web-application-firewall" {
   source = "./modules/web-application-firewall"
 
   resource_group_name = module.rg.resource_group_name
@@ -82,7 +82,7 @@ module "waf" {
   waf_policy_name = var.waf_policy_name
 }
 
-module "app_gateway" {
+module "app-gateway" {
   source = "./modules/app-gateway"
 
   resource_group_name = module.rg.resource_group_name
