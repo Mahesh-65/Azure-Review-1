@@ -1,0 +1,20 @@
+{
+  "name": "dynamic_web",
+  "version": "1.0.0",
+  "description": "this project is learning purpose nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "author": "rohit kawade",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.19.2",
+    "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.6.5",
+    "node-localstorage": "^2.2.1"
+  }
+}
